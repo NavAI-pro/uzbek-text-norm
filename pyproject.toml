@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uzbek-text-norm"
+version = "0.2.0"
+description = "Self-contained Uzbek text normalization for fair ASR scoring: Cyrillic→Latin transliteration, number→words, apostrophe/punctuation/casing cleanup."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "NavAI" }]
+keywords = [
+    "uzbek", "asr", "speech-recognition", "text-normalization",
+    "wer", "cer", "transliteration", "cyrillic", "latin", "nlp",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: Uzbek",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Linguistic",
+]
+dependencies = []  # zero runtime dependencies — standard library only
+
+[project.optional-dependencies]
+score = ["jiwer>=3.0"]   # only needed for the WER/CER scoring recipe in the README
+dev = ["pytest>=7"]
+
+[project.scripts]
+uzbek-text-norm = "uzbek_text_norm.cli:main"
+uzbek-norm-manifest = "uzbek_text_norm.manifest:main"
+uzbek-train-filter = "uzbek_text_norm.training:main"
+
+[project.urls]
+Homepage = "https://navai.pro"
+
+[tool.setuptools]
+packages = ["uzbek_text_norm"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
