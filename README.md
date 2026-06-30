@@ -109,6 +109,32 @@ print(f"WER = {wer(R, H) * 100:.2f}")
 print(f"CER = {cer(R, H) * 100:.2f}")
 ```
 
+### Score a manifest in one command
+
+Have a JSON/JSONL manifest with a reference and a prediction column? Get WER/CER
+directly — normalization is applied for you (this is the exact recipe behind the
+benchmark numbers):
+
+```bash
+uzbek-text-score preds.jsonl --ref-field text --hyp-field pred
+#  set        N      WER      CER
+#  ------------------------------
+#  OVERALL  3837    8.67     2.10
+
+uzbek-text-score preds.jsonl --by dataset      # per-dataset breakdown
+uzbek-text-score preds.jsonl --json            # machine-readable
+```
+
+```python
+from uzbek_text_norm import score_manifest
+res = score_manifest("preds.jsonl", ref_field="text", hyp_field="pred", by="dataset")
+print(res["overall"]["wer"], res["overall"]["cer"])
+```
+
+Each row's reference is normalized with `normalize_reference` and its prediction with
+`normalize_hypothesis`; rows with an empty prediction are skipped by default
+(`--keep-empty-hyp` to count them as errors instead).
+
 ---
 
 ## Configurable API
@@ -199,7 +225,8 @@ pytest
 
 ## Changelog
 
-See [CHANGELOG.md](CHANGELOG.md). Latest: **0.2.0** adds symmetric source-artifact folding
+See [CHANGELOG.md](CHANGELOG.md). Latest: **0.3.0** adds a one-command manifest scorer
+(`uzbek-text-score` / `score_manifest`). 0.2.0 added symmetric source-artifact folding
 (Cyrillic homoglyphs, BOM/zero-width, Unicode hyphens, vulgar fractions).
 
 ## License

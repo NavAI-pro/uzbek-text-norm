@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uzbek-text-norm"
-version = "0.2.0"
+version = "0.3.0"
 description = "Self-contained Uzbek text normalization for fair ASR scoring: Cyrillic→Latin transliteration, number→words, apostrophe/punctuation/casing cleanup."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -33,6 +33,7 @@ dev = ["pytest>=7"]
 [project.scripts]
 uzbek-text-norm = "uzbek_text_norm.cli:main"
 uzbek-norm-manifest = "uzbek_text_norm.manifest:main"
+uzbek-text-score = "uzbek_text_norm.score:main"
 uzbek-train-filter = "uzbek_text_norm.training:main"
 
 [project.urls]

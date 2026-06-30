@@ -23,8 +23,9 @@ from .core import (
     number_to_words,
     spell_numbers_in_text,
 )
+from .score import score_manifest, score_pairs
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 __all__ = [
     "UzbekNormalizer",
@@ -36,6 +37,8 @@ __all__ = [
     "spell_numbers_in_text",
     "number_to_words",
     "number_to_ordinal_words",
+    "score_manifest",
+    "score_pairs",
     "DEFAULT_TAGS",
     "OKINA",
     "__version__",

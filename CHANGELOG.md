@@ -3,6 +3,17 @@
 All notable changes to `uzbek-text-norm` are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.3.0]
+
+### Added
+- **Manifest scorer** (`uzbek_text_norm.score`): feed a JSON/JSONL manifest with a
+  reference and a prediction column, get corpus-level WER/CER with the normalization
+  applied — the exact recipe behind the benchmark numbers.
+  - New CLI `uzbek-text-score` (`--ref-field`, `--hyp-field`, `--by`, `--json`,
+    `--keep-empty-hyp`).
+  - New API `score_manifest(...)` and `score_pairs(...)`, exported from the package.
+- Tests for the scorer (skipped if `jiwer` is not installed).
+
 ## [0.2.0]
 
 ### Added
